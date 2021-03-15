@@ -29,7 +29,7 @@ public class DatabaseHelper {
             if (cnx==null || cnx.isClosed())
             {
                 Class.forName("com.mysql.cj.jdbc.Driver");//Definition de la classe du driver qui sera charge en memoire
-                String url = "jdbc:mysql://localhost:3306/devoirjava1?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDateTimeCode=false&serverTimezone=UTC";//Indique la chaine de connexion
+                String url = "jdbc:mysql://localhost:agritech/devoirjava1?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDateTimeCode=false&serverTimezone=UTC";//Indique la chaine de connexion
                 String user = "root", pwd = "";
                 cnx = DriverManager.getConnection(url, user, pwd);//Etablie la connexion
 
