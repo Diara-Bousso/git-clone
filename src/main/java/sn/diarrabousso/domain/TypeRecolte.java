@@ -34,4 +34,5 @@ public class TypeRecolte {
     public void setDescriptionTyperecolte(String descriptionTyperecolte) {
         this.descriptionTyperecolte = descriptionTyperecolte;
     }
+
 }

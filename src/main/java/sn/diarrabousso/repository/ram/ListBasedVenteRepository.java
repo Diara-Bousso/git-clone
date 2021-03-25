@@ -17,7 +17,7 @@ public class ListBasedVenteRepository implements VenteRepository {
 
     @Override
     public Vente[] getAllByDetailVenteAcheteur(DetailVente detailVente, Acheteur acheteur) {
-        //ventes.add(new Vente(1,"CDE-A001","Achat de 875 Kg de tomate",8));
+        ventes.add(new Vente(1,"CDE-A009","Achat de 875 Kg de tomate","12/03/20",detailVente,acheteur));
         //ventes.add(new Vente(1,"CDE-A009","Achat de 875 Kg de tomate","12/03/2021","Test",acheteur));
         return ventes.toArray(new Vente[0]);
     }
