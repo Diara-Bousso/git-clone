@@ -1,5 +1,6 @@
-package sn.diarrabousso.service.web;
+package sn.diarrabousso.service;
 
+import sn.diarrabousso.domain.Service;
 import sn.diarrabousso.domain.TypeRecolte;
 
 public interface DisplayServiceAgritech {
@@ -9,13 +10,9 @@ public interface DisplayServiceAgritech {
 
     void afficherListeTypeRecote(TypeRecolte[] typeRecoltes);
 
-    void AjouterRecolte();
-
     void afficherChoixInconnue();
 
-    void ListeDeMesRecoltes();
+    void afficherListeService(Service[] services);
 
-    void RechercherUneDeMesRecoltes();
-
-    void ACtivationDesactivationRecolte();
+    void afficherListeVente();
 }

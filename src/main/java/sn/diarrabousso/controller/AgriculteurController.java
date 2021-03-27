@@ -1,41 +1,43 @@
 package sn.diarrabousso.controller;
 
-import sn.diarrabousso.repository.RecolteReository;
-import sn.diarrabousso.repository.TypeRecolteRepository;
-import sn.diarrabousso.repository.jdbc.JdbcBasedTypeRecolteRepository;
-import sn.diarrabousso.repository.jdbc.MysqlDataSource;
-import sn.diarrabousso.repository.ram.ArrayBasedTypeRecolteRepository;
-import sn.diarrabousso.repository.ram.ListBasedRecolteRepository;
+import sn.diarrabousso.repository.*;
+import sn.diarrabousso.repository.jdbc.*;
+import sn.diarrabousso.repository.ram.*;
 import sn.diarrabousso.service.console.ConsoleDislayServiceAgritech;
-import sn.diarrabousso.service.web.DisplayServiceAgritech;
-import sn.diarrabousso.service.web.MenuServiceAgritech;
+import sn.diarrabousso.service.console.ScannerMenuServiceAgritech;
+import sn.diarrabousso.service.DisplayServiceAgritech;
+import sn.diarrabousso.service.MenuServiceAgritech;
 
-import javax.sql.DataSource;
+
+import java.util.Scanner;
 
 public class AgriculteurController {
-    private final DisplayServiceAgritech displayServiceAgritech ;
-    private final MenuServiceAgritech scannerMenuServiceAgritech ;
+    private DisplayServiceAgritech displayServiceAgritech;
+    private MenuServiceAgritech scannerMenuServiceAgritech;
 
-
-
-    public AgriculteurController(DisplayServiceAgritech displayServiceAgritech, MenuServiceAgritech scannerMenuServiceAgritech) {
-        this.displayServiceAgritech = displayServiceAgritech;
-        DataSource dataSource = (DataSource) new MysqlDataSource();
-        this.scannerMenuServiceAgritech = scannerMenuServiceAgritech;
+    public AgriculteurController() {
         TypeRecolteRepository typeRecolteRepository = new ArrayBasedTypeRecolteRepository();
-        RecolteReository recolteReository= new ListBasedRecolteRepository();
-        db = DatabaseHelper.getInstance();
-        displayServiceAgritech= new ConsoleDislayServiceAgritech(typeRecolteRepository, recolteReository);
-        TypeRecolteRepository typeRecolteRepository1 = new JdbcBasedTypeRecolteRepository(db);
-        //RecolteReository recolteReository1= new ListBasedRecolteRepository(db);
-        //scannerMenuServiceAgritech = new ScannerMenuServiceAgritech(displayServiceAgritech,typeRecolteRepository,recolteReository);
+        //ServiceRepository serviceRepository=new ArrayBasedServiceRepository();
+        Datasource datasource = new MysqlDataSource();
+        Scanner scanner = new Scanner(System.in);
+       // RecolteReository recolteReository;
+        //**//displayServiceAgritech = new ConsoleDislayServiceAgritech(typeRecolteRepository);
+        ServiceRepository serviceRepository = new JdbcBasedServiceRepository(datasource);
+        TypeRecolteRepository typeRecolteRepository1 = new JdbcBasedTypeRecolteRepository(datasource);
+        AgriculteurRepository agriculteurRepository = new JdbcBasedAgriculteurRepository(datasource);
+        AcheteurRepository acheteurRepository = new JdbcBasedAcheteurRepository(datasource);
+        RecolteReository recolteReository = new ListBasedRecolteRepository();
+        //VenteRepository venteRepository=new ListBasedVenteRepository();
+        //DetailVenteRepository detailVenteRepository=new ListeBasedDetailVenteRepository();
+        ReseauRepository reseauRepository = new ListBasedReseauRepository();
+        //InvitationRepository invitationRepository=new ListBasedInvitationRepository();
+        //AlerteRepository alerteRepository=new ListBasedAlerteRepository();
+        scannerMenuServiceAgritech = new ScannerMenuServiceAgritech(displayServiceAgritech, scanner, recolteReository, typeRecolteRepository1, serviceRepository, agriculteurRepository, acheteurRepository, reseauRepository);
     }
 
-    public void process()
-    {
+    public void process() {
         displayServiceAgritech.messageAccueil();
         displayServiceAgritech.affichageMenuPrincipal();
         displayServiceAgritech.affichageMenuPrincipal();
     }
-
 }

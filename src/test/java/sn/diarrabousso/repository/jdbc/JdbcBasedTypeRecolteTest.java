@@ -20,8 +20,8 @@ public class JdbcBasedTypeRecolteTest {
     void setUp() throws SQLException {
         System.out.println("Dans la méthode setup");
         //Arrange
-        DataSource dataSource = (DataSource) new MockDatasource();
-        jdbcBasedTypeRecolteRepository = new JdbcBasedTypeRecolteRepository((DatabaseHelper) dataSource);
+        DataSource datasource = (DataSource) new MockDatasource();
+        jdbcBasedTypeRecolteRepository = new JdbcBasedTypeRecolteRepository((Datasource) datasource);
     }
     @Test
     void getPrestations(){
@@ -35,7 +35,7 @@ public class JdbcBasedTypeRecolteTest {
         System.out.println("Exception occured");
         DataSource dataSource = mock(DataSource.class);
         when(dataSource.getConnection()).thenThrow(new RuntimeException("BD indisponible"));
-        jdbcBasedTypeRecolteRepository = new JdbcBasedTypeRecolteRepository((DatabaseHelper) dataSource);
+        jdbcBasedTypeRecolteRepository = new JdbcBasedTypeRecolteRepository((Datasource) dataSource);
         TypeRecolte[] typeRecoltes = jdbcBasedTypeRecolteRepository .getAll();
         assertEquals(0, typeRecoltes.length, "Aucune type de recolte attendu ");
     }
@@ -64,7 +64,7 @@ public class JdbcBasedTypeRecolteTest {
         when(resultSet2.getInt(anyString())).thenReturn(5);
         when(resultSet2.getString(anyString())).thenReturn("aaaaa");
 
-        jdbcBasedTypeRecolteRepository = new JdbcBasedTypeRecolteRepository((DatabaseHelper) dataSource);
+        jdbcBasedTypeRecolteRepository = new JdbcBasedTypeRecolteRepository((Datasource) dataSource);
 
         TypeRecolte typeRecolte = jdbcBasedTypeRecolteRepository.getByCode("CODE-TR01");
         assertNotNull(typeRecolte);

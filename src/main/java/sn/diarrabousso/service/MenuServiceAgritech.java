@@ -1,4 +1,4 @@
-package sn.diarrabousso.service.web;
+package sn.diarrabousso.service;
 
 public interface MenuServiceAgritech {
     void affichageMenuPrincipal();

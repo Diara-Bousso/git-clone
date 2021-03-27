@@ -3,22 +3,31 @@ package sn.diarrabousso.service.console;
 //import sn.diarrabousso.domain.DetailVente;
 import sn.diarrabousso.domain.Service;
 import sn.diarrabousso.domain.TypeRecolte;
-import sn.diarrabousso.repository.DetailVenteRepository;
-import sn.diarrabousso.repository.RecolteReository;
-import sn.diarrabousso.repository.TypeRecolteRepository;
-import sn.diarrabousso.service.web.DisplayServiceAgritech;
+import sn.diarrabousso.repository.*;
+import sn.diarrabousso.service.DisplayServiceAgritech;
 
 public class ConsoleDislayServiceAgritech implements DisplayServiceAgritech {
 
 
     private  final RecolteReository recolteReository;
     private final TypeRecolteRepository typeRecolteRepository;
+    private  final VenteRepository venteRepository;
+    private final DetailVenteRepository detailVenteRepository;
+    private final ReseauRepository reseauRepository;
+    private final InvitationRepository invitationRepository;
+    private final AlerteRepository alerteRepository;
 
-    public ConsoleDislayServiceAgritech( TypeRecolteRepository typeRecolteRepository,RecolteReository recolteReository){
+    public ConsoleDislayServiceAgritech(TypeRecolteRepository typeRecolteRepository, RecolteReository recolteReository, VenteRepository venteRepository, DetailVenteRepository detailVenteRepository, ReseauRepository reseauRepository, InvitationRepository invitationRepository, AlerteRepository alerteRepository){
 
         this.recolteReository = recolteReository;
         this.typeRecolteRepository = typeRecolteRepository;
+        this.venteRepository = venteRepository;
+        this.detailVenteRepository = detailVenteRepository;
+        this.reseauRepository = reseauRepository;
+        this.invitationRepository = invitationRepository;
+        this.alerteRepository = alerteRepository;
     }
+
 
     public void messageAccueil(){
         System.out.println("Bienvenue sur votre plateforme Agri-Tech");
@@ -47,27 +56,17 @@ public class ConsoleDislayServiceAgritech implements DisplayServiceAgritech {
     }
 
     @Override
-    public void AjouterRecolte() {
-
-    }
-
-    @Override
     public void afficherChoixInconnue() {
 
     }
 
     @Override
-    public void ListeDeMesRecoltes() {
+    public void afficherListeService(Service[] services) {
 
     }
 
     @Override
-    public void RechercherUneDeMesRecoltes() {
-
-    }
-
-    @Override
-    public void ACtivationDesactivationRecolte() {
+    public void afficherListeVente() {
 
     }
 }
